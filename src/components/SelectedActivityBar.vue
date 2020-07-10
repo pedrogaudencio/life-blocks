@@ -9,7 +9,7 @@
         | {{ activity.description }}
       .date-holder
         | {{ activity.startDate }} - {{ activity.endDate }}
-    teamplate(v-else)
+    template(v-else)
       | Empty space
 
 </template>

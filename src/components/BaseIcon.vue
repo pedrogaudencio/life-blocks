@@ -37,18 +37,18 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-.icon-wrapper {
-  display: inline-flex;
-  align-items: center;
-  color: rgba(0, 0, 0, 0.4);
-  font-size: 1rem;
-  font-weight: 600;
-}
-.icon {
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  margin-right: 2px;
-}
+// .icon-wrapper {
+//   display: inline-flex;
+//   align-items: center;
+//   color: rgba(0, 0, 0, 0.4);
+//   font-size: 1rem;
+//   font-weight: 600;
+// }
+// .icon {
+//   stroke-linecap: round;
+//   stroke-linejoin: round;
+//   margin-right: 2px;
+// }
 
 .fun {
   margin: 2px;
