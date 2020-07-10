@@ -27,11 +27,17 @@ export default {
     },
     hoverSelectActivity(block) {
       setTimeout(() => {
-        this.$store.dispatch('selectActivity', block)
+        this.$store.dispatch('selectActivity', {
+          ...block,
+          durationInDays: this.durationInDays
+        })
       }, 500)
     },
     selectActivity(block) {
-      this.$store.dispatch('selectActivity', block)
+      this.$store.dispatch('selectActivity', {
+        ...block,
+        durationInDays: this.durationInDays
+      })
     }
   },
   beforeMount () {

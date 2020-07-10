@@ -8,9 +8,11 @@
       .description
         | {{ activity.description }}
       .date-holder
-        | {{ activity.startDate }} - {{ activity.endDate }}
+        | {{ formatDate(activity.startDate) }} - {{ formatDate(activity.endDate) }} ({{activity.durationInDays}} days)
     template(v-else)
       | Empty space
+      .date-holder
+        | {{ formatDate(activity.startDate) }} - {{ formatDate(activity.endDate) }} ({{activity.durationInDays}} days)
 
 </template>
 
@@ -19,8 +21,23 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'SelectedActivityBar',
+  props: {
+    activity: Object
+  },
+  data () {
+    return {
+      start: this.formatDate(this.activity.startDate),
+      end: this.formatDate(this.activity.endDate)
+    }
+  },
   computed: {
     ...mapState(['activity'])
+  },
+  methods: {
+    formatDate(date) {
+      console.log(date)
+      return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+    }
   }
 }
 </script>
