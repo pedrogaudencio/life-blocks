@@ -18,7 +18,6 @@ export default new Vuex.Store({
   },
   mutations: {
     SELECT_ACTIVITY(state, activity) {
-      console.log(state)
       state.activity = activity
     },
     ADD_ACTIVITY(state, activity) {

@@ -4,7 +4,7 @@
       :fill='block.color'
       v-for='day in durationInDays'
       @click.native='selectActivity(block)'
-      @mouseover.native='selectActivity(block)'
+      @mouseover.native='hoverSelectActivity(block)'
     )
 </template>
 
@@ -24,6 +24,11 @@ export default {
   methods: {
     getStartDate: () => {
       return new Date(this.startDate)
+    },
+    hoverSelectActivity(block) {
+      setTimeout(() => {
+        this.$store.dispatch('selectActivity', block)
+      }, 500)
     },
     selectActivity(block) {
       this.$store.dispatch('selectActivity', block)

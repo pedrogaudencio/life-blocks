@@ -35,7 +35,6 @@ export default {
         const activities = response.data.sort((a, b) => {
           new Date(a.startDate) - new Date(b.startDate)
         })
-        console.log(activities)
         const startYear = activities[0].startDate.slice(-4)
         const startDate = `01/01/${startYear}`
         const endYear = activities[activities.length - 1].startDate.slice(-4)
@@ -89,5 +88,6 @@ export default {
 <style scoped>
 .wrapper {
   max-width: 100vw;
+  overflow: hidden;
 }
 </style>
