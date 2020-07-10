@@ -33,7 +33,7 @@ export default {
     ActivityService.getActivities()
       .then((response) => {
         const activities = response.data.sort((a, b) => {
-          new Date(a.startDate) - new Date(b.startDate)
+          return new Date(a.startDate) - new Date(b.startDate)
         })
         const startYear = activities[0].startDate.slice(-4)
         const startDate = `01/01/${startYear}`
