@@ -4,7 +4,7 @@
       :fill='block.color'
       v-for='day in durationInDays'
       @click.native='selectActivity(block)'
-      @mousehover.native='selectActivity(block)'
+      @mouseover.native='selectActivity(block)'
     )
 </template>
 

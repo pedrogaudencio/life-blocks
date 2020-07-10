@@ -1,23 +1,17 @@
 <template lang='pug'>
   .selected-activity(
-    v-if='activity && activity.title'
-    :style="{ 'background-color': activity.color }"
+    v-if='activity'
+    :style="{ 'background-color': activity.color || '#434343' }"
   )
-    | {{ activity.title }}
-    .description
-      | {{ activity.description }}
-    .date-holder
-      | {{ activity.startDate }} - {{ activity.endDate }}
-  .selected-activity(
-    v-else-if='activity === null'
-    :style="{ 'display': 'none' }"
-  )
-  .selected-activity(
-    v-else
-    :style="{ 'background-color': '#434343' }"
-  )
-    | Empty space
-  
+    template(v-if='activity && activity.title')
+      | {{ activity.title }}
+      .description
+        | {{ activity.description }}
+      .date-holder
+        | {{ activity.startDate }} - {{ activity.endDate }}
+    teamplate(v-else)
+      | Empty space
+
 </template>
 
 <script>
@@ -41,6 +35,7 @@ export default {
   background-color: white;
   border-radius: .5rem;
   color: white;
+  transition: all ease-in .3s;
 }
 .description {
   margin-top: .2rem;
