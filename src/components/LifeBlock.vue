@@ -33,8 +33,9 @@ export default {
     const oneDay = 24 * 60 * 60 * 1000
     const endDate = new Date(this.block.endDate)
     const startDate = new Date(this.block.startDate)
-    this.durationInDays = Math.round(Math.abs(
-      (endDate.getTime() - startDate.getTime())/(oneDay)))
+    this.durationInDays = Math.round(
+      Math.abs((endDate.getTime() - startDate.getTime()) / oneDay)
+    )
   }
 }
 </script>

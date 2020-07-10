@@ -1,10 +1,21 @@
 <template lang='pug'>
   .selected-activity(
-    v-if='activity.title'
+    v-if='activity && activity.title'
     :style="{ 'background-color': activity.color }"
   )
     | {{ activity.title }}
-  .selected-activity(v-else :style="{ 'background-color': activity.color }")
+    .description
+      | {{ activity.description }}
+    .date-holder
+      | {{ activity.startDate }} - {{ activity.endDate }}
+  .selected-activity(
+    v-else-if='activity === null'
+    :style="{ 'display': 'none' }"
+  )
+  .selected-activity(
+    v-else
+    :style="{ 'background-color': '#434343' }"
+  )
     | Empty space
   
 </template>
@@ -30,5 +41,13 @@ export default {
   background-color: white;
   border-radius: .5rem;
   color: white;
+}
+.description {
+  margin-top: .2rem;
+  font-size: 0.7rem;
+}
+.date-holder {
+  margin-top: 1rem;
+  font-size: 0.7rem;
 }
 </style>
