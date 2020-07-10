@@ -1,0 +1,55 @@
+{
+  "activities": [
+    {
+      "id": 2,
+      "type": "day",
+      "startDate": "04/07/2018",
+      "endDate": "04/22/2018",
+      "weekdaysOnly": false,
+      "title": "Activity 2",
+      "description": "The description...",
+      "color": "#0C7593"
+    },
+    {
+      "id": 1,
+      "type": "week",
+      "startDate": "02/12/2017",
+      "endDate": "09/04/2017",
+      "duration": 10,
+      "weekdaysOnly": false,
+      "title": "Activity 1",
+      "description": "The description...",
+      "color": "#C2B654"
+    },
+    {
+      "id": 3,
+      "type": "day",
+      "startDate": "05/28/2019",
+      "endDate": "06/12/2019",
+      "weekdaysOnly": false,
+      "title": "Activity 3",
+      "description": "The description...",
+      "color": "#E33956"
+    },
+    {
+      "id": 4,
+      "type": "day",
+      "startDate": "06/31/2020",
+      "endDate": "01/01/2020",
+      "weekdaysOnly": false,
+      "title": "Activity 4",
+      "description": "The description...",
+      "color": "#0F8A5E"
+    },
+    {
+      "id": 5,
+      "type": "day",
+      "startDate": "06/01/2014",
+      "endDate": "10/01/2014",
+      "weekdaysOnly": false,
+      "title": "Activity 0",
+      "description": "The description...",
+      "color": "#0F8A5E"
+    }
+  ]
+}

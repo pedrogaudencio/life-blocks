@@ -1,28 +1,33 @@
-# block-life
+# life-blocks
 
 ## Project setup
 ```
-npm install
+yarn
+```
+
+### Runs local API
+```
+node ./node_modules/json-server/lib/cli/bin.js --watch ./db.json --port 3002
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+yarn dev
 ```
 
 ### Compiles and minifies for production
 ```
-npm run build
+yarn build
 ```
 
 ### Run your unit tests
 ```
-npm run test:unit
+yarn test:unit
 ```
 
 ### Lints and fixes files
 ```
-npm run lint
+yarn lint
 ```
 
 ### Customize configuration
