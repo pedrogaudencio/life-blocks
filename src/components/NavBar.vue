@@ -2,14 +2,24 @@
   <div id="nav" class="nav">
     <router-link to="/" class="brand">Life Blocks</router-link>
     <nav>
-      <!--router-link :to="{ name: 'event-list' }">List</router-link> |
-      <router-link :to="{ name: 'event-create' }">Create</router-link-->
+      <button class="nav-item" href="#" @click="setLifeView('days')">Days</button>
+      <button class="nav-item" href="#" @click="setLifeView('weeks')">Weeks</button>
+      <button class="nav-item" href="#" @click="setLifeView('months')">Months</button>
+      <button class="nav-item" href="#" @click="setLifeView('years')">Years</button>
+      <!-- <router-link :to="{ name: 'event-list' }">List</router-link> |
+      <router-link :to="{ name: 'event-create' }">Create</router-link -->
     </nav>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapActions } from 'vuex'
+
+export default {
+  methods: {
+    ...mapActions(['setLifeView'])
+  }
+}
 </script>
 
 <style scoped>
@@ -26,7 +36,8 @@ export default {}
   color: #39b982;
   text-decoration: none;
 }
-.nav .nav-item {
+.nav .nav-item,
+button.nav .nav-item {
   box-sizing: border-box;
   margin: 0 5px;
   color: rgba(0, 0, 0, 0.5);
@@ -34,6 +45,6 @@ export default {}
 }
 .nav .nav-item.router-link-exact-active {
   color: #39b982;
-  border-bottom: solid 2px #39b982;
+  /* border-bottom: solid 2px #39b982; */
 }
 </style>

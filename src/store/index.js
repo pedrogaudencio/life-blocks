@@ -1,6 +1,6 @@
 import Vue from "vue"
 import Vuex from "vuex"
-import ActivityService from '@/services/ActivityService'
+import EventService from '@/services/EventService'
 
 Vue.use(Vuex)
 
@@ -8,28 +8,35 @@ export default new Vuex.Store({
   modules: {},
   state: {
     activities: null,
-    activity: null
+    event: null,
+    lifeView: 'days'
   },
   getters: {},
   actions: {
-    selectActivity({ commit }, activity) {
-      commit('SELECT_ACTIVITY', activity)
+    selectEvent({ commit }, event) {
+      commit('SELECT_EVENT', event)
+    },
+    setLifeView({ commit }, view) {
+      commit('SET_LIFE_VIEW', view)
     }
   },
   mutations: {
-    SELECT_ACTIVITY(state, activity) {
-      state.activity = activity
+    SELECT_EVENT(state, event) {
+      state.event = event
     },
-    ADD_ACTIVITY(state, activity) {
-      ActivityService.postActivity(activity).then(() => {
-        state.activities.push(activity)
+    ADD_EVENT(state, event) {
+      EventService.postEvent(event).then(() => {
+        state.activities.push(event)
       })
     },
-    UPDATE_ACTIVITY(state, activity) {
+    UPDATE_EVENT(state, event) {
 
     },
-    REMOVE_ACTIVITY(state, activity) {
+    REMOVE_EVENT(state, event) {
 
+    },
+    SET_LIFE_VIEW(state, view) {
+      state.lifeView = view
     }
   },
 })

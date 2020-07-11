@@ -1,96 +1,88 @@
 <template lang='pug'>
   .wrapper
     .life-header
-      SelectedActivityBar
+      SelectedEventBar
     .life-block(v-for='(block, idx) in blocks' :key='idx')
       LifeBlock(:block='block')
 </template>
 
 <script>
-import ActivityService from '@/services/ActivityService'
+import EventService from '@/services/EventService'
 import LifeBlock from '@/components/LifeBlock'
-import SelectedActivityBar from '@/components/SelectedActivityBar'
+import SelectedEventBar from '@/components/SelectedEventBar'
 
 export default {
   name: 'LifeBlocks',
   components: {
     LifeBlock,
-    SelectedActivityBar
+    SelectedEventBar
   },
   data() {
     return {
       blocks: []
     }
   },
-  methods: {},
+  methods: {
+    newEmptyBlock(start, end) {
+      start = typeof start === Object ? start : new Date(start)
+      end = typeof end === Object ? end : new Date(end)
+
+      return {
+        id: null,
+        type: 'empty',
+        startDate: start,
+        endDate: end,
+        weekdaysOnly: false,
+        title: '',
+        description: '',
+        color: '#434343'
+      }
+    }
+  },
   mounted() {
     this.blocks = this.blocks.sort((a, b) => {
       new Date(a.startDate) - new Date(b.startDate)
     })
-    // this.minYear = Number(this.blocks[0].startDate.slice(-4))
   },
   created() {
-    ActivityService.getActivities()
-      .then((response) => {
-        const activities = response.data.sort((a, b) => {
+    EventService.getEvents()
+      .then(response => {
+        // fetch events
+        const events = response.data.sort((a, b) => {
           return new Date(a.startDate) - new Date(b.startDate)
         })
-        // refactor in proper way to maintain tidyness
-        const startYear = activities[0].startDate.slice(-4)
+
+        // TODO: refactor in proper way to maintain tidyness
+        const startYear = events[0].startDate.slice(-4)
         const startDate = `01/01/${startYear}`
-        const endYear = activities[activities.length - 1].startDate.slice(-4)
+        const endYear = events[events.length - 1].startDate.slice(-4)
         const endDate = `12/31/${endYear}`
-        if(startDate !== activities[0].startDate) {
+
+        if (startDate !== events[0].startDate) {
           // adds empty period since the beginning of the year
-          let secondStartDate = new Date(activities[0].startDate)
+          let secondStartDate = new Date(events[0].startDate)
           secondStartDate.setDate(secondStartDate.getDate() - 1)
-          this.blocks.push({
-            id: null,
-            type: 'empty',
-            startDate: new Date(startDate),
-            endDate: secondStartDate,
-            weekdaysOnly: false,
-            title: '',
-            description: '',
-            color: '#434343'
-          })
+          this.blocks.push(this.newEmptyBlock(startDate, secondStartDate))
         }
-        for (let idx = 0; idx < activities.length; idx++) {
+        for (let idx = 0; idx < events.length; idx++) {
           this.blocks.push({
-            ...activities[idx],
-            startDate: new Date(activities[idx].startDate),
-            endDate: new Date(activities[idx].endDate)
+            ...events[idx],
+            startDate: new Date(events[idx].startDate),
+            endDate: new Date(events[idx].endDate)
           })
-          if(activities[idx + 1] !== undefined) {
-            this.blocks.push({
-              id: null,
-              type: 'empty',
-              startDate: new Date(activities[idx].endDate),
-              endDate: new Date(activities[idx + 1].startDate),
-              weekdaysOnly: false,
-              title: '',
-              description: '',
-              color: '#434343'
-            })
+          if (events[idx + 1] !== undefined) {
+            this.blocks.push(
+              this.newEmptyBlock(events[idx].endDate, events[idx + 1].startDate))
           }
         }
-        if(endDate !== activities[activities.length - 1].endDate) {
+        if (endDate !== events[events.length - 1].endDate) {
           // adds empty period till the end of the year
-          let lastEndDate = new Date(activities[activities.length - 1].endDate)
+          let lastEndDate = new Date(events[events.length - 1].endDate)
           lastEndDate.setDate(lastEndDate.getDate() + 1)
-          this.blocks.push({
-            id: null,
-            type: 'empty',
-            startDate: lastEndDate,
-            endDate: new Date(endDate),
-            weekdaysOnly: false,
-            title: '',
-            description: '',
-            color: '#434343'
-          })
+          this.blocks.push(this.newEmptyBlock(lastEndDate, endDate))
         }
-        console.log(this.blocks[0])
-      }).catch(error => {
+      })
+      .catch(error => {
         console.error(error)
       })
   }
@@ -100,6 +92,5 @@ export default {
 <style scoped>
 .wrapper {
   max-width: 100vw;
-  overflow: hidden;
 }
 </style>

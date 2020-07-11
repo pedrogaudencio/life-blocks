@@ -1,12 +1,12 @@
 {
-  "activities": [
+  "events": [
     {
       "id": 2,
       "type": "day",
       "startDate": "04/07/2018",
       "endDate": "04/22/2018",
       "weekdaysOnly": false,
-      "title": "Activity 2",
+      "title": "Event 2",
       "description": "The description...",
       "color": "#0C7593"
     },
@@ -17,7 +17,7 @@
       "endDate": "09/04/2017",
       "duration": 10,
       "weekdaysOnly": false,
-      "title": "Activity 1",
+      "title": "Event 1",
       "description": "The description...",
       "color": "#C2B654"
     },
@@ -27,7 +27,7 @@
       "startDate": "05/28/2019",
       "endDate": "06/12/2019",
       "weekdaysOnly": false,
-      "title": "Activity 3",
+      "title": "Event 3",
       "description": "The description...",
       "color": "#E33956"
     },
@@ -37,7 +37,7 @@
       "startDate": "01/31/2020",
       "endDate": "06/01/2020",
       "weekdaysOnly": false,
-      "title": "Activity 4",
+      "title": "Event 4",
       "description": "The description...",
       "color": "#0F8A5E"
     },
@@ -47,7 +47,7 @@
       "startDate": "06/01/2014",
       "endDate": "10/01/2014",
       "weekdaysOnly": false,
-      "title": "Activity 0",
+      "title": "Event 0",
       "description": "The description...",
       "color": "#0F8A5E"
     }
