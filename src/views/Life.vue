@@ -1,9 +1,9 @@
 <template lang='pug'>
   .wrapper
-    .life-header
-      SelectedEventBar
     .life-block(v-for='(block, idx) in blocks' :key='idx')
       LifeBlock(:block='block')
+    .life-header
+      SelectedEventBar
 </template>
 
 <script>
@@ -55,7 +55,7 @@ export default {
         // TODO: refactor in proper way to maintain tidyness
         const startYear = events[0].startDate.slice(-4)
         const startDate = `01/01/${startYear}`
-        const endYear = events[events.length - 1].startDate.slice(-4)
+        const endYear = events.slice(-1)[0].endDate.slice(-4)
         const endDate = `12/31/${endYear}`
 
         if (startDate !== events[0].startDate) {
@@ -64,20 +64,21 @@ export default {
           secondStartDate.setDate(secondStartDate.getDate() - 1)
           this.blocks.push(this.newEmptyBlock(startDate, secondStartDate))
         }
-        for (let idx = 0; idx < events.length; idx++) {
+        for (let [idx, event] of Object.entries(events)) {
+          idx = Number(idx)
           this.blocks.push({
-            ...events[idx],
-            startDate: new Date(events[idx].startDate),
-            endDate: new Date(events[idx].endDate)
+            ...event,
+            startDate: new Date(event.startDate),
+            endDate: new Date(event.endDate)
           })
           if (events[idx + 1] !== undefined) {
             this.blocks.push(
-              this.newEmptyBlock(events[idx].endDate, events[idx + 1].startDate))
+              this.newEmptyBlock(event.endDate, events[idx + 1].startDate))
           }
         }
-        if (endDate !== events[events.length - 1].endDate) {
+        if (endDate !== events.slice(-1).endDate) {
           // adds empty period till the end of the year
-          let lastEndDate = new Date(events[events.length - 1].endDate)
+          let lastEndDate = new Date(events.slice(-1)[0].endDate)
           lastEndDate.setDate(lastEndDate.getDate() + 1)
           this.blocks.push(this.newEmptyBlock(lastEndDate, endDate))
         }
